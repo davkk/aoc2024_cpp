@@ -15,8 +15,8 @@ int solve() {
 
     for (std::string line{}; std::getline(std::cin, line);) {
         const auto split{line.find("   ")};
-        list1.push_back(std::atoi(line.substr(0, split).c_str()));
-        list2.push_back(std::atoi(line.substr(split + 2, line.size()).c_str()));
+        list1.push_back(std::stoi(line.substr(0, split)));
+        list2.push_back(std::stoi(line.substr(split + 2, line.size())));
     }
 
     std::ranges::sort(list1);
@@ -42,15 +42,15 @@ int solve() {
 
     for (std::string line{}; std::getline(std::cin, line);) {
         const auto split{line.find("   ")};
-        list1.push_back(std::atoi(line.substr(0, split).c_str()));
-        list2.push_back(std::atoi(line.substr(split + 2, line.size()).c_str()));
+        list1.push_back(std::stoi(line.substr(0, split)));
+        list2.push_back(std::stoi(line.substr(split + 2, line.size())));
     }
 
     auto total_d{std::ranges::fold_left(
         list1,
         0,  //
         [&list2](auto acc, const auto& x1) {
-            return acc + x1 * std::ranges::count(list2, x1);
+            return acc + (x1 * std::ranges::count(list2, x1));
         }
     )};
 
@@ -59,14 +59,12 @@ int solve() {
 }  // namespace Part2
 
 int main(int argc, const char** argv) {
-    if (argc == 1) {
-        return 1;
-    }
+    auto args{std::span(argv, static_cast<size_t>(argc))};
     std::map<std::string, std::function<int()>> parts{
         {"1", Part1::solve},  //
         {"2", Part2::solve}
     };
-    auto part{argv[1]};
-    std::printf("part%s: %d\n", part, parts.at(part)());
+    const auto* part{args[1]};
+    std::println("part{}: {}", part, parts.at(part)());
     return 0;
 }

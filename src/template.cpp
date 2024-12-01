@@ -2,6 +2,7 @@
 #include <iostream>
 #include <map>
 #include <print>
+#include <span>
 
 namespace Part1 {
 int solve() {
@@ -20,14 +21,12 @@ int solve() {
 }  // namespace Part2
 
 int main(int argc, const char** argv) {
-    if (argc == 1) {
-        return 1;
-    }
-    const auto parts{std::map<std::string, std::function<int()>>{
+    auto args{std::span(argv, static_cast<size_t>(argc))};
+    std::map<std::string, std::function<int()>> parts{
         {"1", Part1::solve},  //
         {"2", Part2::solve}
-    }};
-    auto part{argv[1]};
-    std::printf("part%s: %d\n", part, parts.at(part)());
+    };
+    const auto* part{args[1]};
+    std::println("part{}: {}", part, parts.at(part)());
     return 0;
 }

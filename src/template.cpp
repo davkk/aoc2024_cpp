@@ -5,7 +5,7 @@
 #include <span>
 
 namespace Part1 {
-int solve() {
+auto solve() -> int {
     for (std::string line{}; std::getline(std::cin, line);) {
     }
     return -1;
@@ -13,14 +13,14 @@ int solve() {
 }  // namespace Part1
 
 namespace Part2 {
-int solve() {
+auto solve() -> int {
     for (std::string line{}; std::getline(std::cin, line);) {
     }
     return -1;
 }
 }  // namespace Part2
 
-int main(int argc, const char** argv) {
+auto main(int argc, const char** argv) -> int {
     auto args{std::span(argv, static_cast<size_t>(argc))};
     std::map<std::string, std::function<int()>> parts{
         {"1", Part1::solve},  //

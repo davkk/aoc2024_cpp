@@ -6,7 +6,6 @@
 #include <print>
 #include <set>
 #include <span>
-#include <unordered_set>
 
 using Grid = std::vector<std::string>;
 

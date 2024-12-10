@@ -35,7 +35,6 @@ auto solve() -> size_t {
         } else if (q % 2 == 0) {
             while (numbers[p] > 0 && numbers[q] > 0) {
                 files.push(static_cast<int>(q / 2));
-
                 numbers[p]--;
                 numbers[q]--;
             }
